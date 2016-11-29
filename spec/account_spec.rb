@@ -8,10 +8,6 @@ describe Account do
 		it 'has a balance of 0' do
 			expect(subject.balance).to eq(0)
 		end
-
-		it 'savings log is empty' do
-			expect(subject.bank_log.data).to be_empty
-		end
 	end
 
 	describe '#deposit' do
@@ -33,6 +29,12 @@ describe Account do
 
 		it 'raises error when withdrawing from an empty account' do
 			expect { subject.withdraw(amount) }.to raise_error "Insufficient balance for withdrawal. Current balance is 0."
+		end
+
+		it 'it logs a withdrawal transaction in an array' do
+			subject.deposit(amount)
+			subject.withdraw(amount2)
+			expect(subject.bank_log.data.count).to eq(2)
 		end
 	end
 

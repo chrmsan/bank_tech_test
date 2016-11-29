@@ -22,7 +22,7 @@ class Account
 	end
 
 	def bank_statement
-		fail "There has yet been any transfers in this account" if @bank_log.logger.empty?
+		fail "There has yet been any transfers in this account" if no_transfer
 			puts "date \t\t|| credit || debit || balance "
 		@bank_log.logger.each do |obj|
 			puts "#{obj[0]} \t|| #{obj[1]} || #{obj[2]} || #{obj[3]}"
@@ -31,6 +31,9 @@ class Account
 
 	private
 
+	def no_transfer
+		@bank_log.data.empty?
+	end
 
 	def insufficient_funds?(amount)
 		@balance < amount
