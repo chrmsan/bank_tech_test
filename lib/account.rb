@@ -6,4 +6,9 @@ class Account
 		@balance = balance
 		@logger = logger
 	end
+
+	def deposit(amount)
+		@balance += amount
+	end
+
 end

@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Account do
+	amount = 500
 
 	describe '#initialize' do
 		it 'has a balance of 0' do
@@ -14,8 +15,12 @@ describe Account do
 
 	describe '#deposit' do
 		it 'can be deposited 500 in the account' do
-			amount = 500
 			expect {subject.deposit(amount)}.to change { subject.balance }.by amount
+		end
+
+		it 'it logs a deposit transaction in an array' do
+			subject.deposit(amount)
+			expect(subject.logger.count).to eq(1)
 		end
 	end
 
