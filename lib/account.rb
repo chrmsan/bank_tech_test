@@ -24,7 +24,7 @@ class Account
 	def bank_statement
 		fail "There has yet been any transfers in this account" if no_transfer
 			puts "date \t\t|| credit || debit || balance "
-		@bank_log.logger.each do |obj|
+		@bank_log.data.each do |obj|
 			puts "#{obj[0]} \t|| #{obj[1]} || #{obj[2]} || #{obj[3]}"
 		end
 	end
