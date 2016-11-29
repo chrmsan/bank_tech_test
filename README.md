@@ -13,6 +13,7 @@ https://github.com/makersacademy/course/blob/master/individual_challenges/bank_t
 ### Running the tech test:
 ```
 $ git clone https://github.com/chrmsan/bank_tech_test.git
+$ bundle
 $ rspec
 $ irb (pry optional)
 ```
