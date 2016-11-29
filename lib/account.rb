@@ -20,6 +20,13 @@ class Account
 		@logger << [current_time, 0, amount, @balance]
 	end
 
+	def bank_statement
+		fail "There has yet been any transfers in this account" if @logger.empty?
+			puts "date \t\t|| credit || debit || balance "
+		@logger.each do |obj|
+			puts "#{obj[0]} \t|| #{obj[1]} || #{obj[2]} || #{obj[3]}"
+		end
+	end
 
 	private
 

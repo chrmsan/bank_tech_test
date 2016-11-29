@@ -1,0 +1,6 @@
+require './lib/account.rb'
+acc = Account.new
+acc.deposit(5000)
+acc.deposit(3000)
+acc.withdraw(1000)
+acc.bank_statement
