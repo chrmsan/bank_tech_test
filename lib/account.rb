@@ -1,38 +1,36 @@
 require 'date'
+require_relative 'bank_log'
 
 class Account
 
-	attr_reader :balance, :logger
+	attr_reader :balance, :bank_log
 
-	def initialize(balance = 0, logger = [])
+	def initialize(balance = 0, bank_log = BankLog.new)
 		@balance = balance
-		@logger = logger
+		@bank_log = bank_log
 	end
 
 	def deposit(amount)
 		@balance += amount
-		@logger << [current_time, amount, 0, @balance]
+		@bank_log.transfer_in(amount, @balance)
 	end
 
 	def withdraw(amount)
 		fail "Insufficient balance for withdrawal. Current balance is #{@balance}." if insufficient_funds?(amount)
 		@balance -= amount
-		@logger << [current_time, 0, amount, @balance]
+		@bank_log.transfer_out(amount, @balance)
 	end
 
 	def bank_statement
-		fail "There has yet been any transfers in this account" if @logger.empty?
+		fail "There has yet been any transfers in this account" if @bank_log.logger.empty?
 			puts "date \t\t|| credit || debit || balance "
-		@logger.each do |obj|
+		@bank_log.logger.each do |obj|
 			puts "#{obj[0]} \t|| #{obj[1]} || #{obj[2]} || #{obj[3]}"
 		end
 	end
 
 	private
 
-	def current_time
-		Time.now.strftime("%d/%m/%Y")
-	end
 
 	def insufficient_funds?(amount)
 		@balance < amount

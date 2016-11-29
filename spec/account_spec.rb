@@ -10,7 +10,7 @@ describe Account do
 		end
 
 		it 'savings log is empty' do
-			expect(subject.logger).to be_empty
+			expect(subject.bank_log.logger).to be_empty
 		end
 	end
 
@@ -21,7 +21,7 @@ describe Account do
 
 		it 'it logs a deposit transaction in an array' do
 			subject.deposit(amount)
-			expect(subject.logger.count).to eq(1)
+			expect(subject.bank_log.logger.count).to eq(1)
 		end
 	end
 
