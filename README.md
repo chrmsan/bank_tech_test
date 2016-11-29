@@ -1,4 +1,4 @@
-# Bank tech test(Makers Academy - September 2016 Cohort)
+# Bank tech test (Makers Academy - September 2016 Cohort)
 
 ### Requirements
 
